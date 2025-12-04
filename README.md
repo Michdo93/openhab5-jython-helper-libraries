@@ -60,3 +60,27 @@ sudo chown -R openhab:openhab /etc/openhab/automation
 sudo systemctl daemon-reload
 sudo systemctl start openhab
 ```
+
+## Installing Python 2.7 and pip2
+
+```
+sudo apt update
+sudo apt install build-essential libffi-dev libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl
+wget https://www.python.org/ftp/python/2.7.18/Python-2.7.18.tar.xz
+tar xf Python-2.7.18.tar.xz
+cd Python-2.7.18
+./configure --enable-optimizations --prefix=/usr/local
+make -j$(nproc)
+sudo make altinstall
+sudo apt install -f -y
+curl https://raw.githubusercontent.com/Michdo93/get-pip/main/get-pip.py -o get-pip.py
+python get-pip.py
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 0
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 1
+sudo update-alternatives --config python
+```
+
+
+
+
+
